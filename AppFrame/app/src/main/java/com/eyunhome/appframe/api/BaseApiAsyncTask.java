@@ -309,6 +309,7 @@ public abstract class BaseApiAsyncTask {
 					public void onFailure(Throwable error,
 										  String content) {
 						error.printStackTrace();
+						LogUtil.log("[----failed----post-----]:" + error.getMessage(), apiLogFileDirectory, apiLogFileName);
 						requestFailed(error, content);
 					}
 
@@ -383,6 +384,7 @@ public abstract class BaseApiAsyncTask {
 					public void onFailure(Throwable error,
 										  String content) {
 						error.printStackTrace();
+						LogUtil.log("[----failed----post-----]:" + error.getMessage(), apiLogFileDirectory, apiLogFileName);
 						requestFailed(error, content);
 					}
 
@@ -434,6 +436,7 @@ public abstract class BaseApiAsyncTask {
 					public void onFailure(Throwable error,
 										  String content) {
 						error.printStackTrace();
+						LogUtil.log("[----failed----post-----]:" + error.getMessage(), apiLogFileDirectory, apiLogFileName);
 						requestFailed(error, content);
 					}
 
@@ -465,6 +468,7 @@ public abstract class BaseApiAsyncTask {
 			public void onFailure(Throwable error,
 								  String content) {
 				error.printStackTrace();
+				LogUtil.log("[----failed----post-----]:" + error.getMessage(), apiLogFileDirectory, apiLogFileName);
 				requestFailed(error, content);
 			}
 

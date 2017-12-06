@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import com.eyunhome.appframe.common.CommonUtil;
 import com.eyunhome.appframe.widget.CustomeRecordVideoView;
 import com.eyunhome.demo.R;
-import com.eyunhome.demo.ui.activity.QkBaseActivity;
+import com.eyunhome.demo.ui.activity.base.QkBaseActivity;
 
 import java.io.File;
 import java.io.IOException;

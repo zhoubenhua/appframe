@@ -32,5 +32,11 @@
             android:text="测试数据库"
             android:layout_height="@dimen/dimen_40_dip"
             />
+        <TextView
+            android:layout_width="fill_parent"
+            android:id="@+id/test_upload_log_tv"
+            android:text="测试上传日志"
+            android:layout_height="@dimen/dimen_40_dip"
+            />
     </LinearLayout>
   </LinearLayout>

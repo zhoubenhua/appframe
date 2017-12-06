@@ -1,10 +1,12 @@
 package com.eyunhome.appframe.model;
 
+import java.util.Observable;
+
 /**
- * Created by acer on 2016-9-21.
- * 处理业务逻辑基类
+ * @desc 业务基类
+ * @auth zhoubenhua  被观察者
+ * @time 2017-11-20. 10:58.
  */
-public interface BaseModel {
 
-
+public  abstract class BaseModel  extends Observable{
 }

@@ -10,9 +10,9 @@ import com.eyunhome.appframe.listener.TopbarImplListener;
 import com.eyunhome.appframe.widget.TopbarView;
 import com.eyunhome.demo.R;
 import com.eyunhome.demo.contract.UserContract;
-import com.eyunhome.demo.model.LoginModel;
-import com.eyunhome.demo.presenter.LoginPresenter;
-import com.eyunhome.demo.ui.activity.QkBaseActivity;
+import com.eyunhome.demo.model.user.LoginModel;
+import com.eyunhome.demo.presenter.user.LoginPresenter;
+import com.eyunhome.demo.ui.activity.base.QkBaseActivity;
 
 /**
  * 登录界面
@@ -30,7 +30,7 @@ public class LoginActivity extends QkBaseActivity<LoginPresenter,LoginModel> imp
         topbarView = (TopbarView)findViewById(R.id.top_bar_view);
         userNameEt = (EditText)findViewById(R.id.user_name_tv);
         passwordEt = (EditText)findViewById(R.id.password_et);
-       // loginBt = (Button)findViewById(R.id.login_bt);
+       loginBt = (Button)findViewById(R.id.login_bt);
     }
 
     @Override
@@ -44,34 +44,13 @@ public class LoginActivity extends QkBaseActivity<LoginPresenter,LoginModel> imp
         public void onClick(View view) {
             String userName = userNameEt.getText().toString();
             String password = passwordEt.getText().toString();
-            if(validateLogin(userName,password)) {
-                if(CommonUtil.checkNetwork(mContext,"请检查你网络")) {
-                    JSONObject bodyParams = new JSONObject();
-                    bodyParams.put("userName",userName);
-                    bodyParams.put("password",password);
-                    mPresenter.sendLoginRequest(mContext,bodyParams,null);
-                }
-            }
+            JSONObject bodyParams = new JSONObject();
+            bodyParams.put("userName",userName);
+            bodyParams.put("password",password);
+            mPresenter.sendLoginRequest(mContext,bodyParams);
         }
     };
 
-    /**
-     * 验证登录参数有没有问题
-     * @param userName 用户名
-     * @param password 密码
-     * @return
-     */
-    public boolean validateLogin( String userName, String password) {
-        boolean loginFlag = false;
-        if(CommonUtil.isEmpty(userName)) {
-            CommonUtil.sendToast(mContext,"用户名不能为空");
-        } else if(CommonUtil.isEmpty(password)) {
-            CommonUtil.sendToast(mContext,"密码不能为空");
-        } else {
-            loginFlag = true;
-        }
-        return loginFlag;
-    }
 
     @Override
     public void loginSucess(String json) {
@@ -110,13 +89,4 @@ public class LoginActivity extends QkBaseActivity<LoginPresenter,LoginModel> imp
         return R.layout.test_mvp;
     }
 
-    @Override
-    public ProgressDialog openProgressDialog(String title, String message) {
-        return  showProgressDialog(title,message);
-    }
-
-    @Override
-    public void closeProgressDialog() {
-        dissmissProgressDialog();
-    }
 }

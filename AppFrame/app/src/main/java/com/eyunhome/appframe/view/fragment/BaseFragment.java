@@ -15,19 +15,6 @@ public abstract class BaseFragment extends Fragment {
     protected ProgressDialog loadingProgressDialog; //请求网络弹出加载框
 
     /**
-     * 打开加载框,用于调用接口弹出的对话框
-     * @param title
-     * @param message
-     * @return
-     */
-    public abstract ProgressDialog showProgressDialog(String title, String message);
-
-    /**
-     * 关闭对话框
-     */
-    public abstract void dissmissProgressDialog();
-
-    /**
      * 初始化控件
      */
     public abstract void initViews(View view);

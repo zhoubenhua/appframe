@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.eyunhome.appframe.bean.AliyuncsOosBean;
 import com.eyunhome.appframe.common.CommonUtil;
@@ -13,6 +14,7 @@ import com.eyunhome.appframe.common.PermissionsCheckerUtil;
 import com.eyunhome.appframe.common.UploadLogFileUtil;
 import com.eyunhome.appframe.widget.TopbarView;
 import com.eyunhome.demo.R;
+import com.eyunhome.demo.ui.activity.base.QkBaseActivity;
 import com.eyunhome.demo.ui.activity.record.RecordVideoActivity;
 import com.eyunhome.demo.ui.activity.user.LoginActivity;
 import com.eyunhome.safe.Safe;
@@ -26,6 +28,7 @@ public class MainActivity extends QkBaseActivity {
     private Context mContext;
     private TopbarView topbarView;
     private TextView testRecordVideoTv;
+    private TextView testUploadLogTv;
     private TextView testDbTv;
 
 
@@ -35,6 +38,7 @@ public class MainActivity extends QkBaseActivity {
         testMvpTv = (TextView)findViewById(R.id.test_mvp_tv);
         testRecordVideoTv = (TextView)findViewById(R.id.test_record_video_tv);
         testDbTv = (TextView)findViewById(R.id.test_db_tv);
+        testUploadLogTv = (TextView)findViewById(R.id.test_upload_log_tv);
     }
 
     @Override
@@ -65,6 +69,16 @@ public class MainActivity extends QkBaseActivity {
         @Override
         public void onClick(View view) {
             checkRecordNeedsPermission();
+        }
+    };
+
+    /**
+     * 测试上传日志
+     */
+    private View.OnClickListener testUploadLogListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            testUploadLog();
         }
     };
 
@@ -135,6 +149,7 @@ public class MainActivity extends QkBaseActivity {
         testMvpTv.setOnClickListener(testMvpListener);
         testRecordVideoTv.setOnClickListener(testRecordVideoListener);
         testDbTv.setOnClickListener(testDbListener);
+        testUploadLogTv.setOnClickListener(testUploadLogListener);
 
     }
 

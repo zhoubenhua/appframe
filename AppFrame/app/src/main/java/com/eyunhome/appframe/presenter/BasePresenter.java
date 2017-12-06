@@ -1,41 +1,47 @@
 package com.eyunhome.appframe.presenter;
-
 import android.content.Context;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
- * Created by acer on 2016-9-19.
- * 控制器基类
+ * @desc mvp（业务m-视图v-处理器p)设计模式 处理器基类
+ * @auth zhoubenhua
+ * @time 2017-11-16. 17:28.
  */
-public abstract class BasePresenter<V, M> {
+
+public class BasePresenter<V,M>   {
     /**
      * 内存不足时释放内存,避免内存泄露
      */
-    protected V v;//视图,显示数据
-    protected M m;//处理业务逻辑
-    public Context mContext;
+    protected V mView;//视图,显示数据
+    protected M mModel;//处理业务逻辑
+    protected Context mContext; //上下文
 
     /**
-     * 关联view和model
-     * @param view
-     * @param model
+     * 关联视图和业务
+     * @param view 视图
+     * @param model 业务
      * @param context
      */
-    public void attachView(V view,M model,Context context) {
-        v = view;
-        m = model;
+    public void attactView(V view,M model,Context context) {
+        mView = view;
+        mModel = model;
         mContext = context;
     }
 
     /**
      * 用于在activity销毁时释放资源
      */
-    public void onDettach(){
-        if(null != v){
-            v = null;
+    public void onDettach() {
+        if(null != mView) {
+            mView = null;
         }
-        if(null != m){
-            m = null;
+        if(null != mModel) {
+            mModel = null;
         }
-     };
+
+    }
+
 
 }

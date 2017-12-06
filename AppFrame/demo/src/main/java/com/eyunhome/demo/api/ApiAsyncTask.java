@@ -21,7 +21,7 @@ public class ApiAsyncTask extends BaseApiAsyncTask {
         ResponseResult data = new ResponseResult();
         data.data = result;
         data.message = "";
-        mListener.onResult(data);
+        mListener.doResponse(data);
 
     }
 
@@ -31,6 +31,6 @@ public class ApiAsyncTask extends BaseApiAsyncTask {
         ResponseResult result = new  ResponseResult();
         result.code = -1;
         result.message = "连接失败";
-        mListener.onResult(result);
+        mListener.doResponse(result);
     }
 }

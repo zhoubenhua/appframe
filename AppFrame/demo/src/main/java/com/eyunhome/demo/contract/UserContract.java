@@ -1,16 +1,15 @@
 package com.eyunhome.demo.contract;
 import android.content.Context;
 import com.alibaba.fastjson.JSONObject;
-import com.eyunhome.appframe.listener.ResponseResultListener;
 import com.eyunhome.appframe.model.BaseModel;
 import com.eyunhome.appframe.presenter.BasePresenter;
-import com.eyunhome.appframe.view.BaseView;
+import com.eyunhome.appframe.view.IBaseView;
 
-import java.util.Map;
+import java.util.Observer;
 
 /**
  * @desc 用户模块契约类
- * 管理用户每个功能的(view,model,presenter),维护方便.
+ * 管理用户每个功能的(view,model,presenter)角色,维护方便.
  * @auth zhoubenhua
  * @time 2017-9-19. 15:41.
  */
@@ -22,32 +21,29 @@ public interface UserContract {
     interface LoginContract{
 
         /**
-         * 处理登录业务
+         * 处理登录业务抽象类
          */
-        interface LoginModel extends BaseModel {
-
-            /**
-             * 验证用户登录
-             * @param mContext 上下文
-             * @param bodyParams 参数
-             * @return 是否验证通过
-             */
-            public boolean validateUserLogin(Context mContext, JSONObject bodyParams);
-
+        abstract class  AbstractLoginModel  extends BaseModel{
             /**
              * 处理登录请求
              * @param mContext 上下文
-             * @param listener 回调接口
              * @param bodyParams 请求参数
-             * @param headParams 头部参数
              */
-            public void doLoginRequest(Context mContext, JSONObject bodyParams, Map<String, Object> headParams, ResponseResultListener listener) ;
+            public abstract void doLoginRequest(Context mContext, JSONObject bodyParams) ;
+
+            /**
+             * 验证登录
+             * @param mContext 上下文
+             * @param bodyParams 请求参数
+             * @return 验证是否通过
+             */
+            public abstract boolean validateLogin(Context mContext,JSONObject bodyParams);
         }
 
         /**
-         * 登录视图
+         * 登录视图接口
          */
-        interface LoginView  extends BaseView {
+        interface LoginView  extends IBaseView {
             /**
              * 登录成功
              * @param json 后台返回来的json
@@ -64,65 +60,116 @@ public interface UserContract {
         /**
          * 登录处理器
          */
-        abstract class LoginPresenter extends BasePresenter<LoginView,LoginModel> {
+        abstract class AbstractLoginPresenter extends BasePresenter<LoginView,AbstractLoginModel> implements Observer {
 
             /**
              * 发送登录请求
              * @param mContext 上下文
              * @param bodyParams 参数
-             * @param headParams 头部参数
              */
-            public abstract void sendLoginRequest(Context mContext, JSONObject bodyParams, Map<String,Object> headParams);
+            public abstract void sendLoginRequest(Context mContext, JSONObject bodyParams);
         }
 
     }
 
     /**
-     * 管理注册功能(view,model,presenter)
+     * 管理查询电话功能(view,model,presenter)
      */
-    interface RegisterContract{
-        /**
-         * 处理注册业务
-         */
-        interface RegisterModel extends BaseModel {
+    interface QueryTelContract{
 
+        /**
+         * 处理查询电话抽象类
+         */
+        abstract class  AbstractQueryTelModel  extends BaseModel{
             /**
-             * 处理注册请求
+             * 处理查询电话请求
              * @param mContext 上下文
-             * @param listener 回调接口
              * @param bodyParams 请求参数
              */
-            public void doRegisterRequest(Context mContext, JSONObject bodyParams, ResponseResultListener listener) ;
-        }
-
-        /**
-         * 注册视图
-         */
-        interface RegisterView  extends BaseView {
-            /**
-             * 注册成功
-             * @param json
-             */
-            public void registerSucess(String json);
-            /**
-             * 注册失败
-             * @param error
-             */
-            public void registerFailed(String error);
+            public abstract void doQueryTelRequest(Context mContext, JSONObject bodyParams) ;
 
         }
 
         /**
-         * 注册处理器
+         * 查询电话视图接口
          */
-        abstract class RegisterPresenter extends BasePresenter<RegisterView,RegisterModel> {
+        interface QueryTelView  extends IBaseView {
             /**
-             * 发送注册请求
+             * 查询电话成功
+             * @param json 后台返回来的json
+             */
+            public void queryTelSucess(String json);
+            /**
+             * 查询电话失败
+             * @param error 返回的错误信息
+             */
+            public void queryTelFailed(String error);
+
+        }
+
+        /**
+         * 查询电话处理器抽象类
+         */
+        abstract class AbstractQueryTelPresenter extends BasePresenter<QueryTelView,AbstractQueryTelModel> implements Observer{
+
+            /**
+             * 发送查询电话请求
+             * @param mContext 上下文
+             * @param bodyParams 参数
+             */
+            public abstract void sendQueryTelRequest(Context mContext, JSONObject bodyParams);
+        }
+
+    }
+
+    /**
+     * 管理用户信息功能(view,model,presenter)
+     */
+    interface QueryUserInfoContract{
+
+        /**
+         * 处理查询用户信息抽象类
+         */
+        abstract class  AbstractQueryUserInfoModel  extends BaseModel{
+            /**
+             * 处理查询电话请求
              * @param mContext 上下文
              * @param bodyParams 请求参数
              */
-            public abstract void sendRegisterRequest(Context mContext, JSONObject bodyParams);
+            public abstract void doQueryUserInfoRequest(Context mContext, JSONObject bodyParams) ;
+
+        }
+
+        /**
+         * 查询用户信息视图接口
+         */
+        interface QueryUserInfoView  extends IBaseView {
+            /**
+             * 查询用户信息成功
+             * @param json 后台返回来的json
+             */
+            public void queryUserInfoSucess(String json);
+            /**
+             * 查询用户信息失败
+             * @param error 返回的错误信息
+             */
+            public void queryUserInfoFailed(String error);
+
+        }
+
+        /**
+         * 查询用户信息抽象类
+         */
+        abstract class AbstractQueryUserInfoPresenter extends BasePresenter<QueryUserInfoView,AbstractQueryUserInfoModel> {
+
+            /**
+             * 发送查询用户信息请求
+             * @param mContext 上下文
+             * @param bodyParams 参数
+             */
+            public abstract void sendQueryUserInfoRequest(Context mContext, JSONObject bodyParams);
         }
     }
+
 
 }

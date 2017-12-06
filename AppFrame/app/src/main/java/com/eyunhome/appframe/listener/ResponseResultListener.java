@@ -6,5 +6,9 @@ package com.eyunhome.appframe.listener;
  *
  */
 public abstract class ResponseResultListener<T> {
-	public abstract void onResult(T result);
+	/**
+	 * 处理响应
+	 * @param result 服务器响应
+	 */
+	public  abstract void  doResponse(T result);
 }
