@@ -46,6 +46,7 @@ public class TestDbActivity extends QkBaseActivity {
         mContext = this;
         topbarView.setTopbarTitle("测试数据库demo");
         qkDb = QkDb.create(mContext,"qk_db",true);
+        topbarView.setBackgroundResource(R.color.colorAccent);
         queryUserInfo();
     }
 

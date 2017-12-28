@@ -20,7 +20,7 @@ import com.eyunhome.demo.util.Constants;
 public class QueryUserInfoModel extends UserContract.QueryUserInfoContract.AbstractQueryUserInfoModel {
     @Override
     public void doQueryUserInfoRequest(Context mContext, JSONObject bodyParams) {
-        String user = QkBuildConfig.getInstance().getConnect().getApiUrl() + Protocol.QUERY_USER_INFO_URl;
+        String user = QkBuildConfig.getInstance().getConnect().getApiUrl() + Protocol.LOGIN_URL;
         ApiAsyncTask apiAsyncTask = new ApiAsyncTask(mContext);
         String apiLogFileDirectory = Constants.LogDef.LOG_DIRECTORY;
         String apiLogFileName = Constants.LogDef.LOG_FILE_NAME;

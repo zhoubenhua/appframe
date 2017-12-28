@@ -20,7 +20,7 @@ import com.eyunhome.demo.util.Constants;
 public class QueryTelModel extends UserContract.QueryTelContract.AbstractQueryTelModel {
     @Override
     public void doQueryTelRequest(Context mContext, JSONObject bodyParams) {
-        String url = QkBuildConfig.getInstance().getConnect().getApiUrl() + Protocol.QUERY_TEL_URl;
+        String url = QkBuildConfig.getInstance().getConnect().getApiUrl() + Protocol.LOGIN_JSON;
         ApiAsyncTask apiAsyncTask = new ApiAsyncTask(mContext);
         String apiLogFileDirectory = Constants.LogDef.LOG_DIRECTORY;
         String apiLogFileName = Constants.LogDef.LOG_FILE_NAME;

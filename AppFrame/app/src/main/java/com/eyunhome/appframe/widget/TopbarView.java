@@ -21,6 +21,7 @@ public class TopbarView extends RelativeLayout {
     private ImageView topbarLeftImgIv;
     private TextView topbarRightTitelTv;
     private ImageView topbarRightImgIv;
+    private RelativeLayout topBarRl;
     private View topView;
 
     public TopbarImplListener listener;
@@ -30,6 +31,7 @@ public class TopbarView extends RelativeLayout {
         LayoutInflater mInflater = LayoutInflater.from(context);
         topView = mInflater.inflate(R.layout.top_bar, this,
                 false);
+        topBarRl = (RelativeLayout)topView.findViewById(R.id.top_bar_rl);
         topbarTitleTv = (TextView) topView.findViewById(R.id.top_bar_title_tv);
         topbarLeftImgIv = (ImageView) topView.findViewById(R.id.top_bar_left_img_iv);
         topbarLeftTitelTv = (TextView) topView.findViewById(R.id.top_bar_left_title_tv);
@@ -70,8 +72,8 @@ public class TopbarView extends RelativeLayout {
      * 设置背景颜色
      * @param color
      */
-    public void setTopbarColor(int color) {
-        topView.setBackgroundColor(color);
+    public void setBackgroundResource(int color) {
+        topBarRl.setBackgroundResource(color);
     }
 
     public TextView getTopbarTitleTv() {
@@ -108,8 +110,8 @@ public class TopbarView extends RelativeLayout {
     }
 
 
-    public View getTopbarView() {
-        return topView;
+    public RelativeLayout getTopbarView() {
+        return topBarRl;
     }
 
     /**

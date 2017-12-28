@@ -5,7 +5,8 @@
 	<RelativeLayout
 		android:layout_width="fill_parent"
 		android:layout_height="@dimen/dimen_40_dip"
-		android:background="#33af86"
+		android:id="@+id/top_bar_rl"
+		android:background="#303F9F"
 		android:paddingLeft="@dimen/dimen_10_dip"
 		android:paddingRight="@dimen/dimen_10_dip">
 
