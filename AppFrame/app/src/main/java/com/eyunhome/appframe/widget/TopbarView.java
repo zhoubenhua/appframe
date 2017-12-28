@@ -76,6 +76,7 @@ public class TopbarView extends RelativeLayout {
         topBarRl.setBackgroundResource(color);
     }
 
+
     public TextView getTopbarTitleTv() {
         return topbarTitleTv;
     }
